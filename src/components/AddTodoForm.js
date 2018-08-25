@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addTodo } from "../actions/postActions";
+import { addTodo } from "../actions/todoActions";
 
 class AddTodoForm extends Component {
   constructor() {
