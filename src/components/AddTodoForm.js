@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addTodo } from "../actions/postActions";
 
 class AddTodoForm extends Component {
   constructor() {
@@ -8,7 +11,11 @@ class AddTodoForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Called!");
+    const text = this.text.value;
+    if (text.trim() !== "") {
+      this.props.addTodo(text);
+    }
+    this.text.value = "";
   };
 
   render() {
@@ -21,6 +28,7 @@ class AddTodoForm extends Component {
         <div className="form-group">
           <input
             className="form-control"
+            ref={node => (this.text = node)}
             type="text"
             name="addTodo"
             placeholder="Add a todo"
@@ -31,4 +39,11 @@ class AddTodoForm extends Component {
   }
 }
 
-export default AddTodoForm;
+AddTodoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { addTodo }
+)(AddTodoForm);

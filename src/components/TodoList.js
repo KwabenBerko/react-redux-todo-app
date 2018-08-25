@@ -7,7 +7,9 @@ class TodoList extends Component {
   render() {
     return (
       <ul className="list-group">
-        <TodoItem />
+        {this.props.todos.map(todo => (
+          <TodoItem key={todo.todoId} todo={todo} />
+        ))}
       </ul>
     );
   }
