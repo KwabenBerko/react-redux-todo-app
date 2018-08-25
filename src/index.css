@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f4;
+}
+
+.wrapper {
+  width: 650px;
+  margin: 0 auto;
+  background: #ffffff;
+  height: 100vh;
+  box-shadow: 0px 0px 1.5px #979797;
+}
+
+header {
+  background-color: blueviolet;
+  color: #ffffff;
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.list-group .list-group-item,
+.form-control {
+  border-radius: 0px;
+}
+
+.addTodoForm {
+  margin-bottom: 5px;
+}
+
+.addTodoForm input {
+  height: 50px;
+}
