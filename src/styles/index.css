@@ -24,10 +24,19 @@ header {
   border-radius: 0px;
 }
 
+li.completed,
+li.completed:hover {
+  text-decoration-line: line-through;
+}
+
 .addTodoForm {
   margin-bottom: 5px;
 }
 
 .addTodoForm input {
   height: 50px;
+}
+
+p span {
+  cursor: pointer;
 }
