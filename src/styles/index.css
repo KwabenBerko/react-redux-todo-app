@@ -24,8 +24,8 @@ header {
   border-radius: 0px;
 }
 
-li.completed,
-li.completed:hover {
+li span.completed,
+li span.completed:hover {
   text-decoration-line: line-through;
 }
 
@@ -37,6 +37,6 @@ li.completed:hover {
   height: 50px;
 }
 
-p span {
+li span.fa {
   cursor: pointer;
 }

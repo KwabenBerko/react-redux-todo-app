@@ -5,19 +5,15 @@ export default function(state = [], action) {
     case ADD_TODO:
       return [...state, action.payload];
     case UPDATE_TODO:
-      let currentState = state;
-      let index = currentState.indexOf(action.payload.todo);
-      if (index > -1) {
-        currentState.splice(index, 1);
-        return [...currentState, action.payload.todo];
-      }
-      return state;
+      const newState = [...state];
+      const index = newState.findIndex(
+        todo => todo.todoId === action.payload.todo.todoId
+      );
+      newState[index] = action.payload.todo;
+      return newState;
     case DELETE_TODO:
-      if (state.indexOf(action.payload.todo) > -1) {
-        state.splice(state.indexOf(action.payload.todo), 1);
-        return [...state];
-      }
-      return state;
+      const i = state.indexOf(action.payload.todo);
+      return [...state.slice(0, i), ...state.slice(i + 1)];
     default:
       return state;
   }

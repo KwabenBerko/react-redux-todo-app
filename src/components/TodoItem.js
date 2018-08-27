@@ -3,31 +3,30 @@ import { connect } from "react-redux";
 import { updateTodo, deleteTodo } from "../actions/todoActions";
 
 class TodoItem extends Component {
-  handleUpdate = (todo, e) => {
-    todo.completed = !todo.completed;
-    this.props.updateTodo(todo);
+  handleUpdate = todo => {
+    this.props.updateTodo({
+      ...todo,
+      completed: !this.props.todo.completed
+    });
   };
 
-  handleDelete = (todo, e) => {
+  handleDelete = todo => {
     this.props.deleteTodo(todo);
   };
 
   render() {
     return (
-      <li
-        className={
-          "list-group-item d-flex completed" +
-          (this.props.todo.completed ? " completed" : "")
-        }
-        onClick={this.handleUpdate.bind(this, this.props.todo)}
-      >
-        {this.props.todo.text}
-        <p className="ml-auto">
-          <span
-            className="fa fa-times"
-            onClick={this.handleDelete.bind(this, this.props.todo)}
-          />
-        </p>
+      <li className="list-group-item d-flex">
+        <span
+          className={this.props.todo.completed ? "completed" : null}
+          onClick={this.handleUpdate.bind(null, this.props.todo)}
+        >
+          {this.props.todo.text}
+        </span>
+        <span
+          className="fa fa-times ml-auto"
+          onClick={this.handleDelete.bind(null, this.props.todo)}
+        />
       </li>
     );
   }
