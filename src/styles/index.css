@@ -40,3 +40,7 @@ li span.completed:hover {
 li span.fa {
   cursor: pointer;
 }
+
+.loadingIcon {
+  height: 100vh;
+}
