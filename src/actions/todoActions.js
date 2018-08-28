@@ -1,11 +1,20 @@
-import { FETCH_TODOS, ADD_TODO, UPDATE_TODO, DELETE_TODO } from "./types";
+import {
+  FETCH_TODOS,
+  FETCH_TODOS_SUCCESS,
+  ADD_TODO,
+  UPDATE_TODO,
+  DELETE_TODO
+} from "./types";
 import { delay } from "lodash";
 import { v4 as uuid } from "uuid";
 
 export const fetchTodos = () => dispatch => {
+  dispatch({
+    type: FETCH_TODOS
+  });
   delay(() => {
     dispatch({
-      type: FETCH_TODOS,
+      type: FETCH_TODOS_SUCCESS,
       payload: [
         {
           todoId: "e5c7e97c-4227-40b8-97d8-bd9ee95084b1",
@@ -24,7 +33,7 @@ export const fetchTodos = () => dispatch => {
         }
       ]
     });
-  }, 2500);
+  }, 3500);
 };
 
 export const addTodo = text => ({

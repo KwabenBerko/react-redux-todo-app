@@ -1,26 +1,53 @@
 import {
   FETCH_TODOS,
+  FETCH_TODOS_SUCCESS,
   ADD_TODO,
   UPDATE_TODO,
   DELETE_TODO
 } from "../actions/types";
 
-export default function(state = [], action) {
+const initialState = {
+  isLoading: false,
+  todos: []
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_TODOS:
-      return [...state, ...action.payload];
+      return {
+        ...state,
+        isLoading: true
+      };
+    case FETCH_TODOS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        todos: [...state.todos, ...action.payload]
+      };
     case ADD_TODO:
-      return [...state, action.payload];
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      };
     case UPDATE_TODO:
-      const newState = [...state];
-      const index = newState.findIndex(
+      const newState = {
+        ...state,
+        todos: [...state.todos]
+      };
+      const index = newState.todos.findIndex(
         todo => todo.todoId === action.payload.todoId
       );
-      newState[index] = action.payload;
-      return newState;
+      newState.todos[index] = action.payload;
+      return {
+        ...state,
+        todos: [...newState]
+      };
     case DELETE_TODO:
-      const i = state.indexOf(action.payload);
-      return [...state.slice(0, i), ...state.slice(i + 1)];
+      const i = state.todos.indexOf(action.payload);
+      return {
+        ...state,
+        todos: [...state.todos.slice(0, i), ...state.todos.slice(i + 1)]
+      };
     default:
       return state;
   }

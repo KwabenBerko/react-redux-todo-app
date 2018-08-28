@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-const LoadingIcon = isLoading => {
-  return (
+const LoadingIcon = ({ isLoading }) => {
+  return isLoading ? (
     <div className="loadingIcon d-flex flex-column align-items-center justify-content-center">
       <span className="fa fa-refresh fa-4x fa-spin" />
     </div>
-  );
+  ) : null;
 };
 
 LoadingIcon.proptypes = {
