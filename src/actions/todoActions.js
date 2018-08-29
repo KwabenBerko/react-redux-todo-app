@@ -32,7 +32,6 @@ export const fetchTodos = () => dispatch => {
 export const addTodo = title => dispatch => {
   axios
     .post("https://jsonplaceholder.typicode.com/todos", {
-      id: uuid(),
       title,
       userId: uuid(),
       completed: false
