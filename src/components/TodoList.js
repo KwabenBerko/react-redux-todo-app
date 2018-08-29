@@ -17,7 +17,7 @@ class TodoList extends Component {
         <LoadingIcon isLoading={this.props.isLoading} />
         <ul className="list-group">
           {this.props.todos.map(todo => (
-            <TodoItem key={todo.todoId} todo={todo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </div>

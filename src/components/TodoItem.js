@@ -21,7 +21,7 @@ class TodoItem extends Component {
           className={this.props.todo.completed ? "completed" : null}
           onClick={this.handleUpdate.bind(null, this.props.todo)}
         >
-          {this.props.todo.text}
+          {this.props.todo.title}
         </span>
         <span
           className="fa fa-times ml-auto"

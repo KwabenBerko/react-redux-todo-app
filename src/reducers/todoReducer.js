@@ -35,7 +35,7 @@ export default function(state = initialState, action) {
         todos: [...state.todos]
       };
       const index = newState.todos.findIndex(
-        todo => todo.todoId === action.payload.todoId
+        todo => todo.id === action.payload.id
       );
       newState.todos[index] = action.payload;
       return {

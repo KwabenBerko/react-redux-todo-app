@@ -5,42 +5,35 @@ import {
   UPDATE_TODO,
   DELETE_TODO
 } from "./types";
-import { delay } from "lodash";
+import axios from "axios";
 import { v4 as uuid } from "uuid";
 
 export const fetchTodos = () => dispatch => {
   dispatch({
     type: FETCH_TODOS
   });
-  delay(() => {
-    dispatch({
-      type: FETCH_TODOS_SUCCESS,
-      payload: [
-        {
-          todoId: "e5c7e97c-4227-40b8-97d8-bd9ee95084b1",
-          text: "Learn redux",
-          completed: false
-        },
-        {
-          todoId: "36710120-2d3d-46ca-911b-5a23bdde256a",
-          text: "Get a good night sleep",
-          completed: true
-        },
-        {
-          todoId: "2bf0d79d-d08c-4d6d-8e64-55e5392a6aeb",
-          text: "Water garden",
-          completed: false
-        }
-      ]
+
+  axios
+    .get("https://jsonplaceholder.typicode.com/todos?_limit=4")
+    .then(response => {
+      if (response.status === 200) {
+        dispatch({
+          type: FETCH_TODOS_SUCCESS,
+          payload: response.data
+        });
+      }
+    })
+    .catch(err => {
+      console.log("Errored");
+      console.log(err);
     });
-  }, 3500);
 };
 
-export const addTodo = text => ({
+export const addTodo = title => ({
   type: ADD_TODO,
   payload: {
-    todoId: uuid(),
-    text,
+    id: uuid(),
+    title,
     completed: false
   }
 });

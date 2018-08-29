@@ -11,11 +11,11 @@ class AddTodoForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const text = this.text.value;
-    if (text.trim() !== "") {
-      this.props.addTodo(text);
+    const title = this.title.value;
+    if (title.trim() !== "") {
+      this.props.addTodo(title);
     }
-    this.text.value = "";
+    this.title.value = "";
   };
 
   render() {
@@ -28,7 +28,7 @@ class AddTodoForm extends Component {
         <div className="form-group">
           <input
             className="form-control"
-            ref={node => (this.text = node)}
+            ref={node => (this.title = node)}
             type="text"
             name="addTodo"
             placeholder="Add a todo"
