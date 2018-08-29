@@ -29,14 +29,27 @@ export const fetchTodos = () => dispatch => {
     });
 };
 
-export const addTodo = title => ({
-  type: ADD_TODO,
-  payload: {
-    id: uuid(),
-    title,
-    completed: false
-  }
-});
+export const addTodo = title => dispatch => {
+  axios
+    .post("https://jsonplaceholder.typicode.com/todos", {
+      id: uuid(),
+      title,
+      userId: uuid(),
+      completed: false
+    })
+    .then(response => {
+      if (response.status === 201) {
+        dispatch({
+          type: ADD_TODO,
+          payload: response.data
+        });
+      }
+    })
+    .catch(err => {
+      console.log("Errored");
+      console.log(err);
+    });
+};
 
 export const updateTodo = todo => ({
   type: UPDATE_TODO,
