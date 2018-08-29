@@ -51,10 +51,24 @@ export const addTodo = title => dispatch => {
     });
 };
 
-export const updateTodo = todo => ({
-  type: UPDATE_TODO,
-  payload: todo
-});
+export const updateTodo = todo => dispatch => {
+  axios
+    .patch(`https://jsonplaceholder.typicode.com/todos/${todo.id}`, {
+      completed: todo.completed
+    })
+    .then(response => {
+      if (response.status === 200) {
+        dispatch({
+          type: UPDATE_TODO,
+          payload: response.data
+        });
+      }
+    })
+    .catch(err => {
+      console.log("Error");
+      console.log(err);
+    });
+};
 
 export const deleteTodo = todo => dispatch => {
   axios

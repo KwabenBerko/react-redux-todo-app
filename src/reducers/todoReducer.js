@@ -38,10 +38,7 @@ export default function(state = initialState, action) {
         todo => todo.id === action.payload.id
       );
       newState.todos[index] = action.payload;
-      return {
-        ...state,
-        todos: [...newState]
-      };
+      return newState;
     case DELETE_TODO:
       const i = state.todos.indexOf(action.payload);
       return {
