@@ -56,7 +56,19 @@ export const updateTodo = todo => ({
   payload: todo
 });
 
-export const deleteTodo = todo => ({
-  type: DELETE_TODO,
-  payload: todo
-});
+export const deleteTodo = todo => dispatch => {
+  axios
+    .delete(`https://jsonplaceholder.typicode.com/todos/${todo.id}`)
+    .then(response => {
+      if (response.status === 200) {
+        dispatch({
+          type: DELETE_TODO,
+          payload: todo
+        });
+      }
+    })
+    .catch(err => {
+      console.log("Error");
+      console.log(err);
+    });
+};
